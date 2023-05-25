@@ -58,7 +58,7 @@ function game(){
     for (let i=1; i<=5;i++){
         playerChoice = prompt("enter rock,paper, or scissors");
         computerChoice = getComputerChoice();
-        console.log("computer:")
+        s
         if(playRound(playerChoice,computerChoice)===true){ //returns true if the player won
             playerWins++
             console.log("you won "+playerChoice +" beats " + computerChoice)
