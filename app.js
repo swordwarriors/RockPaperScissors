@@ -48,28 +48,48 @@ function playRound(playerSelection,computerSelection){
 }
 let playerChoice
 let computerChoice
+const body = document.body
+const score = document.getElementById('score')
+const content = document.createElement('div');
 //function that plays the game
 function game(){
     //keep track of who won 
     let playerWins = 0
     let compWins = 0
+var button =  document.getElementsByClassName("button")
 
-    //play five rounds of the game
-    for (let i=1; i<=5;i++){
-        playerChoice = prompt("enter rock,paper, or scissors");
-        computerChoice = getComputerChoice();
-        s
-        if(playRound(playerChoice,computerChoice)===true){ //returns true if the player won
-            playerWins++
-            console.log("you won "+playerChoice +" beats " + computerChoice)
-        }else if(playRound(playerChoice,computerChoice) === false){
-            compWins++
-            console.log("you lost "+computerChoice +" beats " + playerChoice)
-        }else {
-            console.log("its a tie you both chose  "+playerChoice )
-        }
+for(var i = 0; i<button.length;i++){
+    button[i].addEventListener('click',buttonClick)
+}
+
+function buttonClick(e){
+    computerChoice = getComputerChoice()
+    playerChoice = e.target.id
+    results =  playRound(playerChoice,computerChoice)
+    if(results){
+        playerWins++
+    }else if (results ===false){
+        compWins++
     }
     console.log("computer wins: "+ compWins + ", your wins: "+playerWins)
+    score.textContent ="computer wins: "+ compWins + ", your wins: "+playerWins
+
+    if(playerWins===5){
+        
+        content.classList.add('content');
+        content.textContent = 'Congrats you won';
+
+        body.appendChild(content);
+    }
+    if(compWins===5){
+        content.classList.add('content');
+        content.textContent = 'THE COMPUTER WON';
+
+        body.appendChild(content);
+    }
+
+}
+    
 }
 
 game()
